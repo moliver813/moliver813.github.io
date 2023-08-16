@@ -2,15 +2,50 @@
 <html>
 <head>
 <style>
-    body {background-color: #3b1241;}
-    h1 {color:aliceblue}
-    h2 {color:aliceblue}
-    h3 {color:aliceblue}
-    h4 {color:aliceblue}
-    h5 {color:aliceblue}
-    th {color:aliceblue}
-    p {color:azure}
-    a {color:lightblue}
+
+* {
+  box-sizing: border-box;
+}
+ 
+body {background-color: #3b1241;}
+h1 {color:aliceblue}
+h2 {color:aliceblue}
+h3 {color:aliceblue}
+h4 {color:aliceblue}
+h5 {color:aliceblue}
+th {color:aliceblue}
+p {color:azure}
+a {color:lightblue}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
+}
+
+.onethirdcolumn {
+    float: left;
+    background-color:blue;
+    width: 33%;
+    padding: 10px;
+    height: 300px;
+}
+
+.twothirdscolumn {
+    float: left;
+    width: 67%;
+    background-color: tomato;
+    padding: 10px;
+    height: 300px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 </style>
 </head>
 <body>
@@ -24,17 +59,8 @@
 
 
 <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb</a>
-    </p>
-    <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb</a>
-    </p>
-    <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb</a>
+    For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on cases of Dengue fever in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
 </p>
-
-
-
 
 <p>
 <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb</a>
@@ -55,12 +81,24 @@
 <h3>Company About Us and Clustering</h3>
 
 <p>
+This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
+ The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
+ In order to do this (as well as process the web page I used to produce the list), I learned how to use the <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library to parse and search html documents.
+ Starting with the 500 companies of the S&P 500, I developed a workflow of scripts to download and parse the websites.
+ The latest version captured the about-us information from 215 websites, an acceptable success rate for my purpose. 
+</p>
+
+<p>
 <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb</a>
 </p>
+
+
 
 <p>
 <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb</a>
 </p>
+
+<p>I may return to this project in the future to apply new tools I am currently learning for NLP. Specifically, using dense vector embeddings for the text instead of one-hot embedding.</p>
 
 
 <h3>GPU Stock Study</h3>
@@ -69,10 +107,24 @@
 <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb</a>
 </p>
 
+<p>In order to familiarize myself with financial data (security values), I examined some datasets posted on Kaggle, including one on <a href="https://www.kaggle.com/datasets/kapturovalexander/nvidia-amd-intel-asus-msi-share-prices">GPU vendor stocks</a>.
+ My goals were to get some practice with working with the measurement of returns (defined as the logarithm of the fractional change in value of an asset over a defined time period) and volatility (defined as the standard deviation of the returns). 
+ I also computed several simultaneous correlation functions between different stocks, which can be useful for modelling risk.
+ Also included in the notebook are some comparisons to changes in cryptocurrency values, as well as the VIX general market volatility measurement.
+</p>
+
 <h3>Neural Network and Math Playtime</h3>
+
+
 
 <p>
 <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb</a>
+</p>
+
+<p>
+    In this notebook, I experimented with training neural networks on some basic mathematical functions, trying different neuron activation functions.
+     I started out with a very basic function, the squaring of a real number, and then moved on to computing the distance in 2 dimensional space between two points.
+     I plan to continue with this notebook to experiment with including neural network layers that directly calculate mathematical functions.
 </p>
 
 <h3>Physics Informed Neural Network</h3>
@@ -82,11 +134,9 @@
 </p>
 
 <p>
-    In this experiment, I started with a Jupyter notebook by Ben Moseley, available at <a href="https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb">https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb</a>. The original notebook showed the modelling of damped harmonic oscillator.
+    In this experiment, I started with a Jupyter notebook by Ben Moseley, available <a href="https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb">here</a>. The original notebook showed the modelling of damped harmonic oscillator.
     This notebook modelled the displacement vs time, and showed the benefit of including the differential equation for the damped harmonic oscillator. The equation is included in the model by computing the derivatives of the displacement (velocity and acceleration), pluggin them into the equation, and computing the residual of the model prediction with respect to the equation. This residual was included in the cost function.
     The neural networks trained without the equation were not able to model the systemt well or extrapolate its behavior, while the network with it could. Of course, this is a fairly trivial result, as it mostly just fitting the equation.
-
-    
 </p>
 
 
