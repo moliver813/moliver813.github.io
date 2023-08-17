@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<table style="background-color:#3b1241;">
+
+
+    <h1>Data Science Projects</h1>
+
+    <h2>Dengue Studies</h2>
+    
+    
+    <p>
+        For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on cases of Dengue fever in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
+    </p>
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">Notebook V1</a>
+    </p>
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Notebook V2</a>
+    </p>
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">Notebook V3</a>
+    </p>
+    
+    </table>
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious Disease Monte Carlo Notebook</a>
+    </p>
+    
+    <h2>Company About Us and Clustering</h2>
+    
+    <p>
+    This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
+     The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
+     In order to do this (as well as process the web page I used to produce the list), I learned how to use the <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library to parse and search html documents.
+     Starting with the 500 companies of the S&P 500, I developed a workflow of scripts to download and parse the websites.
+     The latest version captured the about-us information from 215 websites, an acceptable success rate for my purpose. 
+    </p>
+
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">Company About US EDA</a>
+    </p>
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
+    </p>
+    
+    <p>I may return to this project in the future to apply new tools I am currently learning for NLP. Specifically, using dense vector embeddings for the text instead of one-hot embedding.</p>
+    
+    
+    <h2>GPU Stock Study</h2>
+    
+    
+        
+    <p>
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">Notbook Version 2</a>
+    </p>
+        
+    
+    <div class="row">
+    
+    <div class="column">
+    <p>In order to familiarize myself with financial data (security values), I examined some datasets posted on Kaggle, including one on <a href="https://www.kaggle.com/datasets/kapturovalexander/nvidia-amd-intel-asus-msi-share-prices">GPU vendor stocks</a>.
+     My goals were to get some practice with working with the measurement of returns (defined as the logarithm of the fractional change in value of an asset over a defined time period) and volatility (defined as the standard deviation of the returns). 
+     I also computed several simultaneous correlation functions between different stocks, which can be useful for modelling risk.
+     Also included in the notebook are some comparisons to changes in cryptocurrency values, as well as the VIX general market volatility measurement.
+    </p>
+    </div>
+    
+    <div class="column">
+        <img src="figures/plot_gpu.png" alt="GPU stock study plot" style="width:613px;height:289px;">
+    </div>
+    
+    </div>
+    
+    
+    <h2>Neural Network and Math Playtime</h2>
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">Neural Network and Math Notebook Version 1</a>
+    </p>
+    
+    <div class="row">
+    <div class="column">
+    <p>
+        In this notebook, I experimented with training neural networks on some basic mathematical functions, trying different neuron activation functions.
+         I started out with a very basic function, the squaring of a real number, and then moved on to computing the distance in 2 dimensional space between two points.
+         I plan to continue with this notebook to experiment with including neural network layers that directly calculate mathematical functions.
+    </p>
+    </div>
+
+    <div class="column">
+        <img src="figures/plot_math1.png" alt="GPU stock study plot" style="width:300x;height:289px;">
+    </div>
+
+    </div>
+
+    
+    <h2>Physics Informed Neural Network</h2>
+    
+    <p>
+    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb</a>
+    </p>
+    
+    <p>
+        In this experiment, I started with a Jupyter notebook by Ben Moseley, available <a href="https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb">here</a>. The original notebook showed the modelling of damped harmonic oscillator.
+        This notebook modelled the displacement vs time, and showed the benefit of including the differential equation for the damped harmonic oscillator. The equation is included in the model by computing the derivatives of the displacement (velocity and acceleration), pluggin them into the equation, and computing the residual of the model prediction with respect to the equation. This residual was included in the cost function.
+        The neural networks trained without the equation were not able to model the systemt well or extrapolate its behavior, while the network with it could. Of course, this is a fairly trivial result, as it mostly just fitting the equation.
+    </p>
+    
+    
+ 
+</body>
+</html>

@@ -35,6 +35,23 @@ a {color:lightblue}
     height: 300px;
 }
 
+
+.thincolumn {
+    float: left;
+    background-color:blue;
+    width: 38%;
+    padding: 10px;
+    height: 300px;
+}
+
+.thickcolumn {
+    float: left;
+    background-color:rgb(180, 73, 145);
+    width: 62%;
+    padding: 10px;
+    height: 300px;
+}
+
 .row:after {
     content: "";
     display: table;
