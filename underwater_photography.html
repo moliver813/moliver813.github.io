@@ -2,9 +2,67 @@
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
+    <style>
+        div.gallery {
+          margin: 5px;
+          border: 1px solid #ccc;
+          float: left;
+          width: 180px;
+          background-color: #592761;
+          color:rgb(211, 211, 211);
+        }
+        
+        div.gallery:hover {
+          border: 1px solid #777;
+        }
+        
+        div.gallery img {
+          width: 100%;
+          height: auto;
+        }
+        
+        div.desc {
+          padding: 5px;
+          text-align: center;
+        }
+        </style>
 </head>
 <body>
+
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="data_science.html">Data Science</a></li>
+    <li><a href="physics.html">Physics</a></li>
+    <li><a class="active" href="underwater_photography.html">Underwater Photography</a></li>
+</ul>
+      
+
 <table style="background-color:#3b1241;">
+
+    <h1>Underwater Photography</h1>
+
+    <h2>Bonaire 2023</h2>
+
+    <div class="gallery">
+        <a target="_blank" href="pictures/B8C4433B-E71B-4364-88E5-9A640DA16B8C_1_201_a.jpeg">
+          <img src="pictures/B8C4433B-E71B-4364-88E5-9A640DA16B8C_1_201_a.jpeg" alt="French Grunt" width="600" height="400">
+        </a>
+        <div class="desc">French Grunt</div>
+      </div>
+
+    <div class="gallery">
+        <a target="_blank" href="pictures/B157247D-50C8-4C7E-9701-39D1FB8C1490_1_201_a.jpeg">
+          <img src="pictures/B157247D-50C8-4C7E-9701-39D1FB8C1490_1_201_a.jpeg" alt="Goldentail Moray Eel" width="600" height="400">
+        </a>
+        <div class="desc">Goldentail Moray Eel</div>
+    </div>
+    <div class="gallery">
+        <a target="_blank" href="pictures/DABA134F-0E73-47DF-99C2-23405834E088_1_201_a.jpeg">
+            <img src="pictures/DABA134F-0E73-47DF-99C2-23405834E088_1_201_a.jpeg" alt="Graysby Grouper" width="600" height="400">
+        </a>
+        <div class="desc">Graysby Grouper</div>
+    </div>
+
 
 
 </table>
