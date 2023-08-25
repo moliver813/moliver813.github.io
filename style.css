@@ -3,14 +3,28 @@
 }
 
 ul {
+
+  }
+
+ul.menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #634767;
+}
+
+  ul.a {
+    list-style-type: circle;
   }
-  
+
+  ul.b {
+    list-style-type: square;
+        padding: 1em
+  }
+
 li {
+    color:azure;
     float: left;
   }
   
@@ -31,6 +45,11 @@ li a.active {
     background-color:  #592960;
     }
 
+li b {
+    color:azure;
+    float: left;
+}
+
 body {background-color:  #3b1241;}
 h1 {color:aliceblue}
 h2 {color:aliceblue}
@@ -48,20 +67,22 @@ a {color:lightblue}
     height: 300px;
 }
 
+.fullcolumn {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
 .onethirdcolumn {
     float: left;
-    background-color:blue;
     width: 33%;
     padding: 10px;
-    height: 300px;
 }
 
 .twothirdscolumn {
     float: left;
-    background-color:rgb(180, 73, 145);
     width: 67%;
     padding: 10px;
-    height: 300px;
 }
 
 
@@ -70,7 +91,6 @@ a {color:lightblue}
     background-color:blue;
     width: 38%;
     padding: 10px;
-    height: 300px;
 }
 
 .thickcolumn {

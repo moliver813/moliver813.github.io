@@ -5,23 +5,23 @@
 </head>
 <body>
 
-<ul>
+<ul class="menu">
     <li><a href="index.html">Home</a></li>
     <li><a class="active" href="data_science.html">Data Science</a></li>
     <li><a href="physics.html">Physics</a></li>
     <li><a href="underwater_photography.html">Underwater Photography</a></li>
 </ul>
 
-<table style="background-color:#3b1241;">
-
-
     <h1>Data Science Projects</h1>
 
     <h2>Dengue Studies</h2>
     
-    
+    <div class="row">
+
+    <div class="fullcolumn">
     <p>
         For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on cases of Dengue fever in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
+        I was particularly inspired by the <a href="https://www.kaggle.com/learn/time-series">time-series</a> course, which includes some interesting methods for producing and formatting forecasts.
     </p>
     
     <p>
@@ -33,15 +33,49 @@
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">Notebook V3</a>
     </p>
-    
-    </table>
-    
+
+       
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious Disease Monte Carlo Notebook</a>
+        I was inspired to try modeling the system of repeated disease spread that this data was an example of.
+        The spread of infectious disease can be effectively modelled by a system called <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">Compartmental models</a>, tracking different populations of susceptibile, infected, and recovered populations and using differential equations to describe their dynamics.
+        In some situations, these models can show a single instance of a disease spreading and reaching the maximum number of infected before eventually the entire population is recovered (and immune).
+
+        In the case of recurring, seasonal diseases like Dengue or influenza, a few things must change from the basic models:
+        <ul class="b">
+            <li class="b">
+                a
+            </li>
+            
+            <li class="b">
+                b
+            </li>
+        </ul>
     </p>
+    <ul class="b">
+        <li class="b">
+            a
+        </li>
+        
+        <li class="b">
+            b
+        </li>
+    </ul>
+    <p>
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious Disease Monte Carlo Notebook</a>
+        </p>
+        
+        <p>As seen in the notebook, I succeeded in one goal of producing artificial data that resembled the real-world data.</p>
+
+    </div>  
+    </div>
     
+
     <h2>Company About Us and Clustering</h2>
     
+    <div class="row">
+    
+        <div class="fullcolumn">
+
     <p>
     This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
      The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
@@ -50,29 +84,41 @@
      The latest version captured the about-us information from 215 websites, an acceptable success rate for my purpose. 
     </p>
 
-    
+
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">Company About US EDA</a>
+    </p>
+
+    <p>
+
     </p>
     
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
     </p>
-    
-    <p>I may return to this project in the future to apply new tools I am currently learning for NLP. Specifically, using dense vector embeddings for the text instead of one-hot embedding.</p>
-    
+
+    <p>
+        I decided to further study and experiment with the clustering metric I produced for the about us study.
+    </p>
+
+    <p>I may return to this project in the future to apply new tools I am currently learning for NLP. Specifically, using dense vector embeddings for the text instead of one-hot embedding.
+         One issue with doing this is that this project has involved unsupervised learning, and the embedding examples I have seen involved training on data with labels.
+    </p>
+    </div>
+    </div>
     
     <h2>GPU Stock Study</h2>
-    
-    
         
-    <p>
-        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">Notbook Version 2</a>
-    </p>
         
     
     <div class="row">
     
+    <div class="fullcolumn">
+        <p>
+            <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">Notebook Version 2</a>
+        </p>
+    </div>
+
     <div class="column">
     <p>In order to familiarize myself with financial data (security values), I examined some datasets posted on Kaggle, including one on <a href="https://www.kaggle.com/datasets/kapturovalexander/nvidia-amd-intel-asus-msi-share-prices">GPU vendor stocks</a>.
      My goals were to get some practice with working with the measurement of returns (defined as the logarithm of the fractional change in value of an asset over a defined time period) and volatility (defined as the standard deviation of the returns). 
@@ -90,11 +136,13 @@
     
     <h2>Neural Network and Math Playtime</h2>
     
-    <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">Neural Network and Math Notebook Version 1</a>
-    </p>
     
     <div class="row">
+    <div class="fullcolumn">
+    <p>
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">Neural Network and Math Notebook Version 1</a>
+    </p>
+    </div>
     <div class="column">
     <p>
         In this notebook, I experimented with training neural networks on some basic mathematical functions, trying different neuron activation functions.
@@ -112,6 +160,9 @@
     
     <h2>Physics Informed Neural Network</h2>
     
+    <div class="row">
+    <div class="fullcolumn">
+    
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb</a>
     </p>
@@ -121,8 +172,8 @@
         This notebook modelled the displacement vs time, and showed the benefit of including the differential equation for the damped harmonic oscillator. The equation is included in the model by computing the derivatives of the displacement (velocity and acceleration), pluggin them into the equation, and computing the residual of the model prediction with respect to the equation. This residual was included in the cost function.
         The neural networks trained without the equation were not able to model the systemt well or extrapolate its behavior, while the network with it could. Of course, this is a fairly trivial result, as it mostly just fitting the equation.
     </p>
-    
-    
+    </div>
+    </div>
  
 </body>
 </html>
