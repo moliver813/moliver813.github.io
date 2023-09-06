@@ -25,17 +25,17 @@ ul.menu {
 
 li {
     color:azure;
-    float: left;
   }
   
 li a {
+    float: left;
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
-  
+
 li a:hover {
     background-color: #397e3b;
     }
@@ -47,7 +47,6 @@ li a.active {
 
 li b {
     color:azure;
-    float: left;
 }
 
 body {background-color:  #3b1241;}

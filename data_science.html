@@ -6,17 +6,17 @@
 <body>
 
 <ul class="menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a class="active" href="data_science.html">Data Science</a></li>
-    <li><a href="physics.html">Physics</a></li>
-    <li><a href="underwater_photography.html">Underwater Photography</a></li>
+    <li class="a"><a href="index.html">Home</a></li>
+    <li class="a"><a class="active" href="data_science.html">Data Science</a></li>
+    <li class="a"><a href="physics.html">Physics</a></li>
+    <li class="a"><a href="underwater_photography.html">Underwater Photography</a></li>
 </ul>
 
     <h1>Data Science Projects</h1>
 
     <h2>Dengue Studies</h2>
     
-    <div class="row">
+<div class="row">
 
     <div class="fullcolumn">
     <p>
@@ -25,7 +25,24 @@
     </p>
     
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">Notebook V1</a>
+        The dataset posted on Kaggle includes several variables to use as features, coming from several sources of meteorological data.
+        This includes tempurature and precipitation data from both local measuring stations as well as satellite date. The satellite data also includes humidity measurements and a dew point variable that I assume is computed from the other measurements.
+        There is also the satellite NDVI (<a href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index">Normalized Difference Vegetation Index</a>), which is a measurement of vegeation density using satellite imaging.
+    </p>
+
+    <p> So far in this project, I have three major versions of the notebook saved, to help track my progress.</p>
+
+    
+    <p>
+    In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">Notebook Version 1</a>, 
+    I begin with an investigation of an issue in the data, wherein some of the date information was recorded in a nonsensical way, with the 52nd week of some (but not all) years being assigned to the next year. This was not helped by the fact that another time variable, supposed to give the first day of the week, did not change year-to-year, indicating that it was not referring to any standard week.
+    After a fair deal of suffering, I produced a solution to map the dataset's time information into a time index.
+    </p>
+
+    <p>
+        After solving the time information issue, I did some exploratory data analysis, looking at raw plots of the variables.
+        I made use of some of the tools from the Time-Series course, including measurements of the correlation of the variable of interest with its past values.
+        This includes the Partial Autocorrelation tool, which, for each time-lag, computes the correlation of the target variable with the lagged variable after subtracting off the correlation with the previous time lags.
     </p>
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Notebook V2</a>
@@ -43,30 +60,41 @@
         In the case of recurring, seasonal diseases like Dengue or influenza, a few things must change from the basic models:
         <ul class="b">
             <li class="b">
-                a
+                Random addition of new infections. Otherwise the infections could got to 0 and never return. New infections could come from travellers or from animal reservoirs.
             </li>
             
             <li class="b">
-                b
+                Periodicity in some factor and/or a significant introduction of new susceptible people.
             </li>
-        </ul>
+            <ul>
+                <li>If the infectivity changes periodically, that could produce waves of disease. For example, it theorized that flu seasons may be caused by people spending more times together indoors in winter.
+                     In the case of Dengue fever, it is plausible that the population of Dengue-spreading mosquitos changes periodically, driven by seasonal changes in temperature, precipitation, and humidity.
+                </li>
+                <li>
+                    Periodicity could also come from waves of infections that fall off when there are no more susceptible people. Then the recovered (immune) population becomes susceptible, probably from a process of waning immunity, until a new wave of infection starts. It is unlikely that this would create a perfectly regular period, though.
+                </li>
+            </ul>
+        </u>
+
     </p>
-    <ul class="b">
-        <li class="b">
-            a
-        </li>
-        
-        <li class="b">
-            b
-        </li>
-    </ul>
-    <p>
+
+    </div> 
+    <div class="column">
+        <p>
         <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious Disease Monte Carlo Notebook</a>
         </p>
         
         <p>As seen in the notebook, I succeeded in one goal of producing artificial data that resembled the real-world data.</p>
 
-    </div>  
+    </div>
+
+    <div class="column">
+            <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:300x;height: 289px;">
+    </div>
+    
+
+
+ 
     </div>
     
 
