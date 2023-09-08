@@ -50,12 +50,12 @@ li b {
 }
 
 body {background-color:  #3b1241;}
-h1 {color:aliceblue}
-h2 {color:aliceblue}
-h3 {color:aliceblue}
-h4 {color:aliceblue}
-h5 {color:aliceblue}
-th {color:aliceblue}
+h1 {color:aliceblue;    text-align: center;}
+h2 {color:aliceblue;    text-align: center;}
+h3 {color:aliceblue;    text-align: center;}
+h4 {color:aliceblue;    text-align: center;}
+h5 {color:aliceblue;    text-align: center;}
+th {color:aliceblue;    text-align: center;}
 p {color:azure}
 a {color:lightblue}
 

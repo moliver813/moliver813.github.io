@@ -20,10 +20,13 @@
 
     <div class="fullcolumn">
     <p>
-        For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on cases of Dengue fever in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
+        For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on weekly cases of Dengue fever (see figure below) in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
         I was particularly inspired by the <a href="https://www.kaggle.com/learn/time-series">time-series</a> course, which includes some interesting methods for producing and formatting forecasts.
     </p>
     
+    <img src="figures/dengue_data.png" alt="Weekly Dengue Infections" style="width:50%; display: block; margin-left: auto; margin-right: auto;">
+
+
     <p>
         The dataset posted on Kaggle includes several variables to use as features, coming from several sources of meteorological data.
         This includes tempurature and precipitation data from both local measuring stations as well as satellite date. The satellite data also includes humidity measurements and a dew point variable that I assume is computed from the other measurements.
@@ -39,10 +42,27 @@
     After a fair deal of suffering, I produced a solution to map the dataset's time information into a time index.
     </p>
 
+    </div>
+
+    <div class="column">
     <p>
         After solving the time information issue, I did some exploratory data analysis, looking at raw plots of the variables.
         I made use of some of the tools from the Time-Series course, including measurements of the correlation of the variable of interest with its past values.
         This includes the Partial Autocorrelation tool, which, for each time-lag, computes the correlation of the target variable with the lagged variable after subtracting off the correlation with the previous time lags.
+        The results of this are shown at right. The first point (lag=0) is trivially 1 (a variable is always 100% correlated with itself).
+        The high value for the second point (lag = 1) shows that the infection rate is highly correlated with the rate from the previous week.
+        The third point and fourth points (lag 2 and 3) indicate an additional dependence on previous values that is more complicated than a simple linear dependence on the previous value.
+        The points beyond this are near or below the confidence interval, and so those time-lagged variables may not be as useful for predictions, although this is a very marginal call, since the value at 9 weeks lagged is beyond the confidence interval.
+    </p>
+    </div>
+    <div class="column">
+    <img src="figures/pacf.png" alt="Partial AutoCorrelation" style="width:400px; display: block; margin-left: auto; margin-right: auto;">
+    </div>
+
+    <div class="fullcolumn">
+
+    <p>
+        In addition to 
     </p>
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Notebook V2</a>
@@ -80,16 +100,29 @@
 
     </div> 
     <div class="column">
-        <p>
-        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious Disease Monte Carlo Notebook</a>
-        </p>
         
-        <p>As seen in the notebook, I succeeded in one goal of producing artificial data that resembled the real-world data.</p>
+        <p>I implemented some of these ideas in this <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">notebook</a>
+            At right, I've included plot of the weekly infections from different simulations with the same settings.</p>
+
+        <p> I succeeded in one goal of producing artificial data that qualitatively resembles the real-world data.
+             Specifically, it has annual waves, but these are not perfectly repetitive, with some years not havinga a significant wave at all.
+              I credit this to the noise I added to the rates of increasing infections and recoveries.</p>
+
+        <p>Some possible future improvements to this could include:</p>
+        <ul>
+            <li> Fine-tuning of the noise and beta parameters to better match the data</li>
+            <li> Addition of a process converting recovered population to susceptible. Otherwise, the model leads to a completely immune population.</li>
+        </ul>
+        <p>Some future use for this model could be to train another model to determine the parameters, such as the parameters for the infectivity and the noise parameters.
+            Then I could look at what that model returns when fed the real-world data.
+            Could it then be included as part of a more general machine learned model for infectious disease?
+        </p>
+
 
     </div>
 
-    <div class="column">
-            <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:300x;height: 289px;">
+    <div class="column" style="height:500px">
+            <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:450px;height: 500px;">
     </div>
     
 
@@ -102,25 +135,48 @@
     
     <div class="row">
     
-        <div class="fullcolumn">
+    <div class="fullcolumn">
 
     <p>
     This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
      The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
      In order to do this (as well as process the web page I used to produce the list), I learned how to use the <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library to parse and search html documents.
      Starting with the 500 companies of the S&P 500, I developed a workflow of scripts to download and parse the websites.
-     The latest version captured the about-us information from 215 websites, an acceptable success rate for my purpose. 
+     The latest version captured the about-us information from 215 of 500 websites, an acceptable success rate for my purpose. 
+    </p>
+    </div>
+
+
+    <div class="column">
+    <p>
+        I then took the dataset of company "about us" text and analyzed it in a notebook available
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">here</a>. I used some tools I learned in a course on sentiment analysis in 
+        Natural Language Processing, including some fun word cloud visualizations.
     </p>
 
+    <p> I then converted the text data into vectors using a count vectorizer.</p>
+    </div>
+
+    <div class="column">
+        <img src="figures/company_wordcloud.png" alt="Copmany about-us word cloud" style="width:613px;height:289px;">
+    </div>
+
+    <div class="fullcolumn">
 
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">Company About US EDA</a>
+    One issue I found in my study was that the k-means clustering often produced many clusters with only one entry, which means it is probably not a useful clustering.
+    This, in addition to the fact that my original motivation was to investigate the validity of the classification of companies into X cultures, led me to develop a metric for 
+    the quality/utitility of a clustering.
     </p>
 
     <p>
-
+        To create such I function, I was inspired by this popular <a href="https://www.youtube.com/watch?v=v68zYyaEmEA">video</a> on choosing the best guesses the NYT Wordle puzzle.
+        In the video, the author uses the information theory definition of entropy to measure the information content of a given guess, resulting in CRANE giving most information, on average.
+        I did something similar with the clustering, creating a definition for the entropy (information content) of the clustering.
+        For the probabilities in the entropy function, I use the relative sizes of the clusters. This is equivalent to asking what the probability that 
+        a random entry will be in a given cluster.
     </p>
-    
+
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
     </p>
@@ -166,15 +222,12 @@
     
     
     <div class="row">
-    <div class="fullcolumn">
-    <p>
-        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">Neural Network and Math Notebook Version 1</a>
-    </p>
-    </div>
     <div class="column">
     <p>
-        In this notebook, I experimented with training neural networks on some basic mathematical functions, trying different neuron activation functions.
+        In this mini-project, available <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">here</a>, I experimented with training neural networks on some basic mathematical functions, trying different neuron activation functions.
          I started out with a very basic function, the squaring of a real number, and then moved on to computing the distance in 2 dimensional space between two points.
+         
+         
          I plan to continue with this notebook to experiment with including neural network layers that directly calculate mathematical functions.
     </p>
     </div>
@@ -192,12 +245,9 @@
     <div class="fullcolumn">
     
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb">https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb</a>
-    </p>
-    
-    <p>
-        In this experiment, I started with a Jupyter notebook by Ben Moseley, available <a href="https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb">here</a>. The original notebook showed the modelling of damped harmonic oscillator.
-        This notebook modelled the displacement vs time, and showed the benefit of including the differential equation for the damped harmonic oscillator. The equation is included in the model by computing the derivatives of the displacement (velocity and acceleration), pluggin them into the equation, and computing the residual of the model prediction with respect to the equation. This residual was included in the cost function.
+        In this experiment, I started with a Jupyter notebook by Ben Moseley, available <a href="https://github.com/benmoseley/harmonic-oscillator-pinn/blob/main/Harmonic%20oscillator%20PINN.ipynb">here</a>.
+         The original notebook showed the modelling of damped harmonic oscillator.
+        In my notebook, available <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb">here</a>, modelled the displacement vs time, and showed the benefit of including the differential equation for the damped harmonic oscillator. The equation is included in the model by computing the derivatives of the displacement (velocity and acceleration), pluggin them into the equation, and computing the residual of the model prediction with respect to the equation. This residual was included in the cost function.
         The neural networks trained without the equation were not able to model the systemt well or extrapolate its behavior, while the network with it could. Of course, this is a fairly trivial result, as it mostly just fitting the equation.
     </p>
     </div>
