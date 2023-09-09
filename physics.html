@@ -7,8 +7,8 @@
 
 <ul class="menu">
     <li class="a"><a href="index.html">Home</a></li>
-    <li class="a"><a class="active" href="data_science.html">Data Science</a></li>
-    <li class="a"><a href="physics.html">Physics</a></li>
+    <li class="a"><a href="data_science.html">Data Science</a></li>
+    <li class="a"><a class="active" href="physics.html">Physics</a></li>
     <li class="a"><a href="underwater_photography.html">Underwater Photography</a></li>
 </ul>
 
@@ -21,19 +21,39 @@
         <p>During two summers of my undergraduate study, I worked in the Student Undergraduate Laboratory Internship (SULI) program at Argonne National Laboratory.
         There, I worked on data analysis and simulation for an experiment that had run with the CLAS detector at Thomas Jefferson National Lab (JLab) in Virginia.
     </p></div>
-        <div class="twothirdscolumn">
-            <p>The CLAS detector was a large acceptance spectrometer in Hall B of the Continuous Electron Beam Facility (CEBAF) at JLab, measuring final-state particles from fixed-target collisions by the electron beam.
+        <div class="column">
+            <p>The CLAS detector is a large acceptance spectrometer in Hall B of the Continuous Electron Beam Facility (CEBAF) at JLab, measuring final-state particles from fixed-target collisions by the electron beam.
+            The specific experiment I worked in used 1 and 6 GeV polarized electron beams on a hydrogen and helium fixed targets, 
+            with a time-projection chamber around the target that measured the recoiling nucleus
+            In the first summer, I worked on running the Geant4 simulation package to simulate particles traversing the central detector.
+             One interesting section of this project was when I wrote my own simulation, using the same equations as Geant4, of the energy loss for particles, which helped
+             me discover that the existing simulation setup had a critical error where the density of the target gas was several orders of magnitude too large (due to an issue with units), 
+             leading to particles losing too much energy in the simulation.
             </p>
+        </div>
+        <div class="column">
+            <img src="figures/clas_large1.jpg" alt="CEBAF Large Acceptance Spectrometer" style="width:250px;height: 250px;">
         </div>
 
 
     </div>
 
     <h2>ALICE at CERN</h2>
+    
+    <div class="row">
+    <div class="column">
+    <a target="_blank" href="https://en.wikipedia.org/wiki/ALICE_experiment#/media/File:ALICE_all.jpg">
+    <img src="figures/alice.jpg" alt="A Large Ion Collider Experiment" style="height:300px;">
+    </a>
+    </div>
 
+    <div class="column">
+        <p>
+            For graduate school and for my thesis, I worked on the ALICE (A Large Ion Collider Experiment, pictured at left) experiment at CERN.
+        </p>
+    </div>
 
-
-
+</div>
     <h3>Direct Contributions</h3>
 
     <h4>Jet-Hadron Paper</h4>

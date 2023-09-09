@@ -18,31 +18,30 @@
     
 <div class="row">
 
-    <div class="fullcolumn">
-    <p>
-        For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on weekly cases of Dengue fever (see figure below) in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
-        I was particularly inspired by the <a href="https://www.kaggle.com/learn/time-series">time-series</a> course, which includes some interesting methods for producing and formatting forecasts.
-    </p>
+<div class="fullcolumn">
+<p>
+    For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on weekly cases of Dengue fever (see figure below) in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
+    I was particularly inspired by the <a href="https://www.kaggle.com/learn/time-series">time-series</a> course, which includes some interesting methods for producing and formatting forecasts.
+</p>
     
     <img src="figures/dengue_data.png" alt="Weekly Dengue Infections" style="width:50%; display: block; margin-left: auto; margin-right: auto;">
 
+<p>
+    The dataset posted on Kaggle includes several variables to use as features, coming from several sources of meteorological data.
+    This includes tempurature and precipitation data from both local measuring stations as well as satellite date. The satellite data also includes humidity measurements and a dew point variable that I assume is computed from the other measurements.
+    There is also the satellite NDVI (<a href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index">Normalized Difference Vegetation Index</a>), which is a measurement of vegeation density using satellite imaging.
+</p>
 
-    <p>
-        The dataset posted on Kaggle includes several variables to use as features, coming from several sources of meteorological data.
-        This includes tempurature and precipitation data from both local measuring stations as well as satellite date. The satellite data also includes humidity measurements and a dew point variable that I assume is computed from the other measurements.
-        There is also the satellite NDVI (<a href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index">Normalized Difference Vegetation Index</a>), which is a measurement of vegeation density using satellite imaging.
-    </p>
-
-    <p> So far in this project, I have three major versions of the notebook saved, to help track my progress.</p>
+<p> So far in this project, I have three major versions of the notebook saved, to help track my progress.</p>
 
     
-    <p>
+<p>
     In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">Notebook Version 1</a>, 
     I begin with an investigation of an issue in the data, wherein some of the date information was recorded in a nonsensical way, with the 52nd week of some (but not all) years being assigned to the next year. This was not helped by the fact that another time variable, supposed to give the first day of the week, did not change year-to-year, indicating that it was not referring to any standard week.
     After a fair deal of suffering, I produced a solution to map the dataset's time information into a time index.
-    </p>
+</p>
 
-    </div>
+</div>
 
     <div class="column">
     <p>
@@ -52,18 +51,34 @@
         The results of this are shown at right. The first point (lag=0) is trivially 1 (a variable is always 100% correlated with itself).
         The high value for the second point (lag = 1) shows that the infection rate is highly correlated with the rate from the previous week.
         The third point and fourth points (lag 2 and 3) indicate an additional dependence on previous values that is more complicated than a simple linear dependence on the previous value.
-        The points beyond this are near or below the confidence interval, and so those time-lagged variables may not be as useful for predictions, although this is a very marginal call, since the value at 9 weeks lagged is beyond the confidence interval.
+        Since there are some points beyond the confidence limits up until the 9 week lag, I included up to 10 lags in the set of features for the models to use.    
     </p>
     </div>
     <div class="column">
-    <img src="figures/pacf.png" alt="Partial AutoCorrelation" style="width:400px; display: block; margin-left: auto; margin-right: auto;">
+        <img src="figures/pacf.png" alt="Partial AutoCorrelation" style="width:400px; display: block; margin-left: auto; margin-right: auto;">
     </div>
 
     <div class="fullcolumn">
 
     <p>
-        In addition to 
+        I also applied a few feature engineering tools, including principal component analysis and computing features from the derivative of the lagged target.
+        I then trained the first models for this project, using the powerful XGBoost Regressor and a tool called a Regressor Chain.
+        The models were set up to produce forecasts for for each of the 10 upcoming weeks.
+        The results from one of these first models is shown below.
     </p>
+    </div>
+
+    <div class="fullcolumn">
+        <img src="figures/dengue_model_1.png" alt="Partial AutoCorrelation" style="width:700px; display: block; margin-left: auto; margin-right: auto;">
+    </div>
+
+    
+    <p>
+        In the above plot, the section of the data chosen as the validation range (where the model is not trained) is shown. 
+        Each colored line indicates a single forecast, starting on a given week. 
+    </p>
+
+
     <p>
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Notebook V2</a>
     </p>
@@ -71,7 +86,7 @@
     <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">Notebook V3</a>
     </p>
 
-       
+    <div class="fullcolumn">
     <p>
         I was inspired to try modeling the system of repeated disease spread that this data was an example of.
         The spread of infectious disease can be effectively modelled by a system called <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">Compartmental models</a>, tracking different populations of susceptibile, infected, and recovered populations and using differential equations to describe their dynamics.
