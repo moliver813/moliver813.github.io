@@ -56,6 +56,9 @@
 </p>
 
 </div>
+</div>
+
+<div class="row">
 
     <div class="column">
     <p>
@@ -72,6 +75,10 @@
         <img src="figures/pacf.png" alt="Partial AutoCorrelation" style="width:400px; display: block; margin-left: auto; margin-right: auto;">
     </div>
 
+</div>
+<div class="row">
+
+
     <div class="fullcolumn">
 
     <p>
@@ -83,26 +90,52 @@
     </div>
 
     <div class="fullcolumn">
-        <img src="figures/dengue_model_1.png" alt="Partial AutoCorrelation" style="width:700px; display: block; margin-left: auto; margin-right: auto;">
+        <img src="figures/dengue_model_1.png" alt="Early Model for Dengue" style="width:700px; display: block; margin-left: auto; margin-right: auto;">
     </div>
 
     
+    <div class="fullcolumn">
     <p>
         In the above plot, the section of the data chosen as the validation range (where the model is not trained) is shown. 
-        Each colored line indicates a single forecast, starting on a given week. Overall, these forecasts are certainly not bad
+        Each colored line indicates a single forecast, starting on a given week. Overall, these forecasts are certainly not bad: they are somewhat continuous, initial values  start near the most recent measured values, and the models predict both decreases and increases in the infection rates.
+        One thing that bothered me about the model predictions shown here (see the notebook for even worse cases) is the discontinuity in the model, which could suggest to me some 'overconfidence' in the model. 
+        One solution to this, which I plan to implement in a future version, is to take the results of many models (with variations in hyperparameters) and average them with the variance of the model predictions giving the confidence interval. 
     </p>
 
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="column" style="height:300px">
     <p>
         In the next notebook, <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">version 2</a>, I started applying my first neural networks (outside of courses).
-    </p>
+        One interesting feature of these results was how smooth (continuous and differentiable) the resulting predictions were.
+        I did not expect this, since each of the final outputs was its own node in a dense layer, meaning each had a separate set of weights to apply to the previous layer.
+        Is this continuity (particularly in comparison to the XGBoost results) a general feature of neural network models?
+        Or perhaps it is reinforced by my choice to use a layer with sigmoid activation functions? I would like to investigate these questions more in another version.
+        </p>
 
-    <p>
+        <p>
         One thing that bothered me about these NN results was the fact that the 1 week forecast was not close to value one week before.
         It seems intuitive that this forecast should be strongly impacted by this, and that it should be relatively easy for the model to hit.
         My thinking then was that this could be improved by adding more weight in the loss function to the earlier dates.
-        In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">version 3</a>, I implemented such as weighted loss function, using an exponential decay (plus a constant) as weighting.
-    </p>
+        </p>
+    </div>
 
+    <div class="column">
+        <img src="figures/dengue_nn_model_1.png" alt="Early NN Model for Dengue" style="height:300px; display: block; margin-left: auto; margin-right: auto;">
+    </div>
+
+    <div class="fullcolumn">
+        <p>In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">version 3</a>, I implemented such as weighted loss function, using an exponential decay (plus a constant) as weighting.
+            I also tried added an early stopping to the model training, so comparing version 3 to version 2 does not quite reveal which change is responsible for differences.
+            I will be revisiting this in the near future.
+        </p>
+    </div>
+
+
+    <h3>Dengue Monte Carlo Simulation</h3>
     <div class="fullcolumn">
     <p>
         I was inspired to try modeling the system of repeated disease spread that this data was an example of.
@@ -154,7 +187,7 @@
     </div>
 
     <div class="column" style="height:500px">
-            <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:450px;height: 500px;">
+            <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:450px;height: 490px;">
     </div>
     
 
