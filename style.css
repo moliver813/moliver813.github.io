@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+hr {
+  color: aliceblue;
+}
+
 ul {
 
   }
@@ -49,6 +53,15 @@ li b {
     color:azure;
 }
 
+table, th, td {
+  border:1px solid aliceblue;
+}
+
+td {color:aliceblue}
+
+td.left {text-align: center; width: 25%;}
+td.right {text-align: left; padding-left:6px;}
+
 body {background-color:  #3b1241;}
 h1 {color:aliceblue;    text-align: center;}
 h2 {color:aliceblue;    text-align: center;}
@@ -78,6 +91,12 @@ a {color:lightblue}
     padding: 10px;
 }
 
+.onethirdcolumnright {
+  float: right;
+  width: 33%;
+  padding: 10px;
+}
+
 .twothirdscolumn {
     float: left;
     width: 67%;
@@ -87,14 +106,12 @@ a {color:lightblue}
 
 .thincolumn {
     float: left;
-    background-color:blue;
     width: 38%;
     padding: 10px;
 }
 
 .thickcolumn {
     float: left;
-    background-color:rgb(180, 73, 145);
     width: 62%;
     padding: 10px;
     height: 300px;

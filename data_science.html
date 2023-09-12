@@ -14,10 +14,24 @@
 
     <h1>Data Science Projects</h1>
 
-    <h2>Dengue Studies</h2>
-    
-<div class="row">
 
+    <hr>
+    <h2>Dengue Studies</h2>
+
+
+<table style="width:100%">
+    <tr>
+        <td class="left">Notebook Links:</td>
+        <td class="right">
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study.ipynb">Version 1</a>,
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Version 2</a>,
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">Version 3</a>,
+        <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">Infectious MC Version 1</a>
+        </td>
+    </tr>
+</table>
+
+<div class="row">
 <div class="fullcolumn">
 <p>
     For one of the first Kaggle datasets I looked at after my first Kaggle courses was one on weekly cases of Dengue fever (see figure below) in the cities of San Juan and Iquitos, available <a href="https://www.kaggle.com/datasets/arashnic/epidemy">here</a>.
@@ -75,15 +89,18 @@
     
     <p>
         In the above plot, the section of the data chosen as the validation range (where the model is not trained) is shown. 
-        Each colored line indicates a single forecast, starting on a given week. 
+        Each colored line indicates a single forecast, starting on a given week. Overall, these forecasts are certainly not bad
     </p>
 
+    <p>
+        In the next notebook, <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">version 2</a>, I started applying my first neural networks (outside of courses).
+    </p>
 
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">Notebook V2</a>
-    </p>
-    <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">Notebook V3</a>
+        One thing that bothered me about these NN results was the fact that the 1 week forecast was not close to value one week before.
+        It seems intuitive that this forecast should be strongly impacted by this, and that it should be relatively easy for the model to hit.
+        My thinking then was that this could be improved by adding more weight in the loss function to the earlier dates.
+        In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">version 3</a>, I implemented such as weighted loss function, using an exponential decay (plus a constant) as weighting.
     </p>
 
     <div class="fullcolumn">
@@ -145,9 +162,19 @@
  
     </div>
     
-
+    <hr>
     <h2>Company About Us and Clustering</h2>
     
+    <table style="width:100%">
+        <tr>
+            <td class="left">Notebook Links:</td>
+            <td class="right">
+            <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/company-about/company-about-us-eda.ipynb">Version 1</a>,
+            <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
+            </td>
+        </tr>
+    </table>
+
     <div class="row">
     
     <div class="fullcolumn">
@@ -192,31 +219,55 @@
         a random entry will be in a given cluster.
     </p>
 
+    </div>
+
+    <div class="column">
+
     <p>
-    <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
+        I decided to further study and experiment with the clustering metric I produced for the about us study, by producing simulated clusters in an n-dimensional space and running k-means on them. 
+        Generating the artificial clusters itself was a fun process, including learning how to use the ortho_group module from scipy to make sure the clusters had random orientations. 
+    </p> 
+    </div>
+
+
+    <div class="column">
+        <img src="figures/cluster_generated_clusters.png" alt="Clustering study clusters" style="height:290px;">
+    </div>
+
+
+
+    <div class="column">
+    <p>
+        I then computed the entropy function I defined previously, and looked at how the entropy changed with the number of clusters in the algorithm.  
     </p>
 
     <p>
-        I decided to further study and experiment with the clustering metric I produced for the about us study.
+        Notebook link: <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/study-of-clustering-metric.ipynb">Clustering Metric Notebook</a>
     </p>
-
+    
     <p>I may return to this project in the future to apply new tools I am currently learning for NLP. Specifically, using dense vector embeddings for the text instead of one-hot embedding.
          One issue with doing this is that this project has involved unsupervised learning, and the embedding examples I have seen involved training on data with labels.
     </p>
-    </div>
+
     </div>
     
+    <div class="column">
+        <img src="figures/cluster_experiment_scaled_entropy.png" alt="Scaled Entropy Ratio" style="height:290px;">
+    </div>
+
+
+    </div>
+    <hr>
     <h2>GPU Stock Study</h2>
         
-        
+    <table style="width:100%">
+        <tr>
+          <td class="left">Notebook Link:</td>
+          <td class="right"><a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">Version 2</a></td>
+        </tr>
+    </table>
     
     <div class="row">
-    
-    <div class="fullcolumn">
-        <p>
-            <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/gpu-company-stock-study-eda-v2.ipynb">Notebook Version 2</a>
-        </p>
-    </div>
 
     <div class="column">
     <p>In order to familiarize myself with financial data (security values), I examined some datasets posted on Kaggle, including one on <a href="https://www.kaggle.com/datasets/kapturovalexander/nvidia-amd-intel-asus-msi-share-prices">GPU vendor stocks</a>.
@@ -232,10 +283,16 @@
     
     </div>
     
-    
+    <hr>
     <h2>Neural Network and Math Playtime</h2>
     
-    
+    <table style="width:100%">
+        <tr>
+          <td class="left">Notebook Link:</td>
+          <td class="right"><a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/neural-network-and-math-playtime.ipynb">Version 1</a></td>
+        </tr>
+    </table>
+
     <div class="row">
     <div class="column">
     <p>
@@ -253,9 +310,16 @@
 
     </div>
 
-    
+    <hr>
     <h2>Physics Informed Neural Network</h2>
     
+    <table style="width:100%">
+        <tr>
+          <td class="left">Notebook Link:</td>
+          <td class="right"><a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/physics-informed-neural-network-testing.ipynb">Version 1</a></td>
+        </tr>
+    </table>
+
     <div class="row">
     <div class="fullcolumn">
     

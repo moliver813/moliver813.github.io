@@ -14,7 +14,8 @@
 
 <table style="background-color:#3b1241;">
 
-
+    <h1>Michael's Work in Physics</h1>
+    <hr>
     <h2>CLAS at JLab</h2>
     <div class="row">
         <div class="fullcolumn">
@@ -30,27 +31,42 @@
              me discover that the existing simulation setup had a critical error where the density of the target gas was several orders of magnitude too large (due to an issue with units), 
              leading to particles losing too much energy in the simulation.
             </p>
+            
+            
         </div>
         <div class="column">
             <img src="figures/clas_large1.jpg" alt="CEBAF Large Acceptance Spectrometer" style="width:250px;height: 250px;">
         </div>
 
+        <div class="fullcolumn">
+        <p>In the second summer I worked on analyzing data from both hydrogen and helium targets with 1.1 GeV electron.
+            I analyzed the electrons measured by the detector and compared to predictions based on elastic scattering to estimate the efficiency of the detector.
+            This work contributed to the publication available <a href="https://www.sciencedirect.com/science/article/abs/pii/S0168900218305692">here</a>.
+        </p>
+        </div>
 
     </div>
-
+    <hr>
     <h2>ALICE at CERN</h2>
     
     <div class="row">
-    <div class="column">
-    <a target="_blank" href="https://en.wikipedia.org/wiki/ALICE_experiment#/media/File:ALICE_all.jpg">
-    <img src="figures/alice.jpg" alt="A Large Ion Collider Experiment" style="height:300px;">
-    </a>
+
+    <div class="onethirdcolumn" style="padding-right: 0px;">
+        <a target="_blank" href="https://alice-collaboration.web.cern.ch/">
+            <img src="figures/alice.jpg" alt="A Large Ion Collider Experiment" style="height:300px;">
+        </a>
     </div>
 
-    <div class="column">
+    <div class="onethirdcolumn">
         <p>
-            For graduate school and for my thesis, I worked on the ALICE (A Large Ion Collider Experiment, pictured at left) experiment at CERN.
+            For graduate school, I worked on the ALICE (A Large Ion Collider Experiment, pictured at left) experiment at CERN.
         </p>
+    </div>
+
+    <div class="onethirdcolumnright">
+        <a target="_blank" href="https://home.cern/">
+            <img src="figures/CernExperimentsFigure.jpg" alt="CERN" style="height:300px;">
+        </a>
     </div>
 
 </div>
@@ -58,21 +74,65 @@
 
     <h4>Jet-Hadron Paper</h4>
     <div class="row">
-    <p><a href="https://iopscience.iop.org/article/10.1088/1742-6596/736/1/012021">link</a></p>
+    <div class="fullcolumn">
+    <p>
+        Some of my first physics work in graduate school was contributing to an analysis of jet-hadron correlations in Pb-Pb collisions.
+        The purpose of this analysis was to study how jets (clusters of quarks and gluons originating from a single high energy quark or gluon) lose energy
+        in the quark-gluon plasma produced in heavy ion collisions. 
+    </p>
+
+    <p> In addition to contributing ideas for variables to measure for the final result, my main contribution was to produce a theoretical prediction to compare to.
+        I did this using the JEWEL model (details here <a href="https://jewel.hepforge.org/">here</a>), a Monte Carlo event generator for jets losing energy in a quark-gluon plasma.
+        In order to create predictions with statistical significance, I had to run large batches of simulations with the model, on the order of 100 million events.
+        To do this, I learned how to use the high performance computing resources available at Yale, including using the SLURM and TORQUE computing clusture software.
+    </p>
+    <p>
+        In the process of studying results for JEWEL, I uncovered a surprising bug that resulted in strange, asymmetric results in one of the two main modes of JEWEL. 
+        After learning more Fortran, I was able to identify the cause of the bug and figure out a simple fix, which is now included in the model. 
+    </p>
+
+    <p>
+        I was succesfully able to produce predictions for the jet-hadron paper, which are included in final publication, available <a href="https://iopscience.iop.org/article/10.1088/1742-6596/736/1/012021">here</a>.
+
+    </p>
+    
     </div>
+    </div>
+
     <h4>Electro-Magnetic Calorimeter Performance Paper</h4>
     <div class="row">
-    <p><a href="https://iopscience.iop.org/article/10.1088/1748-0221/18/08/P08007">link</a></p>
+        <div class="column">
+            <p>
+                As a gradute student member of the ALICE collaboration, I worked on one of the subdetectors of ALICE, the EMCal (Electromagnetic-Calorimeter).
+                Specifically, I worked on updating and tuning the simulation of the EMCal trigger (a feature of the detector that lets us oversample rare events of interest).
+                My work consisted of updating the simulation to include a new section of the detector added for the 2015-2018 run of the LHC and to add artificial noise to the simulation to mimic the real noise.
+                This work helped with my own analysis and was included in the larger publication on the performance of the EMCal, available <a href="https://iopscience.iop.org/article/10.1088/1748-0221/18/08/P08007">here</a>.
+            </p>
+
+        </div>
+        <div class="column">
+            <img src="figures/EMCALTDR_fig_2_1.png" alt="ALICE EMCal" style="height:300px;">
+        </div>
     </div>
     <h4>My Analysis</h4>
         <div class="row">
-        <p><a href="https://cds.cern.ch/record/2819867">link</a></p>
+        <div class="fullcolumn">
+            <p><a href="https://cds.cern.ch/record/2819867">link</a></p>
+        </div>
+        <div class="fullcolumn">
+            <p>
+                After completing my Ph.D analysis on the 2015 data set, I worked on extending my analysis to use a new reconstruction of the 2015 data and include additional data taken in 2018.
+                In the process, I found the cause of a bug that caused a strange feature in the data.
+                Unfortunately, this bug affected my Ph.D analysis and reduced any effect that could be found by a factor of 5.
+                On the bright side, with this bug fixed, my analysis has been approved as a paper proposal within the collaboration.
+            </p>
+        </div>
     </div>
     <h3>Additional Papers</h3>
     <div class="row">
     <div class="fullcolumn">
-        <p>Following this <a href="https://link.springer.com/search?dc.creator=M.+H.+Oliver&facet-discipline=%22Physics%22">link</a> gives a search for physics papers for which I am listed as an author. This should included papers published by ALICE while I was a member of the collaboration.</p>
-
+        <p>Following this <a href="https://link.springer.com/search?dc.creator=M.+H.+Oliver&facet-discipline=%22Physics%22">link</a> gives a search for physics papers for which I am listed as an author.
+             This should included papers published by ALICE while I was a member of the collaboration.</p>
     </div>
     </div>
 </table>
