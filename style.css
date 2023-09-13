@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 100%;
+}
+
+.clear { clear: both; }
+
 hr {
   color: aliceblue;
 }
@@ -51,6 +57,7 @@ li a.active {
 
 li b {
     color:azure;
+    font-size: 118.75%;
 }
 
 table, th, td {
@@ -69,26 +76,35 @@ h3 {color:aliceblue;    text-align: center;}
 h4 {color:aliceblue;    text-align: center;}
 h5 {color:aliceblue;    text-align: center;}
 th {color:aliceblue;    text-align: center;}
-p {color:azure}
+
+p {
+  color:azure;
+  font-size: 118.75%;
+}
+
+row {
+  min-height: 100vh;
+  overflow:auto;
+}
+
 a {color:lightblue}
 
 .column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px;
+  float: left;
+  width: 50%;
+  padding: 10px;
 }
 
 .fullcolumn {
-    float: left;
-    width: 100%;
-    padding: 10px;
+  float: left;
+  width: 100%;
+  padding: 10px;
 }
 
 .onethirdcolumn {
-    float: left;
-    width: 33%;
-    padding: 10px;
+  float: left;
+  width: 33%;
+  padding: 10px;
 }
 
 .onethirdcolumnright {
@@ -98,24 +114,24 @@ a {color:lightblue}
 }
 
 .twothirdscolumn {
-    float: left;
-    width: 67%;
-    padding: 10px;
+  float: left;
+  width: 67%;
+  padding: 10px;
 }
 
 
 .thincolumn {
-    float: left;
-    width: 38%;
-    padding: 10px;
+  float: left;
+  width: 38%;
+  padding: 10px;
 }
 
 .thickcolumn {
-    float: left;
-    width: 62%;
-    padding: 10px;
-    height: 300px;
+  float: left;
+  width: 62%;
+  padding: 10px;
 }
+
 
 .row:after {
     content: "";

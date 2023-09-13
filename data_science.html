@@ -76,6 +76,7 @@
     </div>
 
 </div>
+<br class="clear" />
 <div class="row">
 
 
@@ -105,27 +106,31 @@
     </div>
 
 </div>
+<br class="clear" />
 <div class="row">
 
-    <div class="column" style="height:300px">
+    <div class="column">
     <p>
         In the next notebook, <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v2.ipynb">version 2</a>, I started applying my first neural networks (outside of courses).
         One interesting feature of these results was how smooth (continuous and differentiable) the resulting predictions were.
         I did not expect this, since each of the final outputs was its own node in a dense layer, meaning each had a separate set of weights to apply to the previous layer.
         Is this continuity (particularly in comparison to the XGBoost results) a general feature of neural network models?
         Or perhaps it is reinforced by my choice to use a layer with sigmoid activation functions? I would like to investigate these questions more in another version.
-        </p>
+    </p>
 
-        <p>
+    <p>
         One thing that bothered me about these NN results was the fact that the 1 week forecast was not close to value one week before.
         It seems intuitive that this forecast should be strongly impacted by this, and that it should be relatively easy for the model to hit.
         My thinking then was that this could be improved by adding more weight in the loss function to the earlier dates.
-        </p>
+    </p>
     </div>
 
     <div class="column">
         <img src="figures/dengue_nn_model_1.png" alt="Early NN Model for Dengue" style="height:300px; display: block; margin-left: auto; margin-right: auto;">
     </div>
+
+</div>
+<div class="row">
 
     <div class="fullcolumn">
         <p>In <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/dengue-study-v3.ipynb">version 3</a>, I implemented such as weighted loss function, using an exponential decay (plus a constant) as weighting.
@@ -134,6 +139,8 @@
         </p>
     </div>
 
+</div>
+<div class="row">
 
     <h3>Dengue Monte Carlo Simulation</h3>
     <div class="fullcolumn">
@@ -164,6 +171,10 @@
     </p>
 
     </div> 
+
+</div>
+<div class="row">
+
     <div class="column">
         
         <p>I implemented some of these ideas in this <a href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/infectious-disease-mc1.ipynb">notebook</a>
@@ -186,13 +197,10 @@
 
     </div>
 
-    <div class="column" style="height:500px">
+    <div class="column">
             <img src="figures/mc_infections.png" alt="Monte Carlo Infections Simulation" style="width:450px;height: 490px;">
     </div>
     
-
-
- 
     </div>
     
     <hr>
