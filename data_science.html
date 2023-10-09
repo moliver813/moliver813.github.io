@@ -15,9 +15,153 @@
     <h1>Data Science Projects</h1>
 
 
-    <hr>
-    <h2>Dengue Studies</h2>
 
+
+<hr>
+<h2>Image Extrapolator</h2>
+    
+<table style="width:100%">
+    <tr>
+    <td class="left">Notebook Links:</td>
+    <td class="right">
+        <a target="_blank" href="https://github.com/moliver813/Data_Science_Miniprojects/blob/main/ImageExtrapolator.ipynb">Version 1</a>
+    </td>
+    </tr>
+</table>
+
+
+<div class="row">
+    <div class="fullcolumn">
+        <p>
+            The goal of this project was to get more practice with machine learning and to create something of visual interest.
+            The basic idea is to take images and train a model to extrapolate beyond the edge of the image.
+            Obviously, such a model can never be fully accurate, but as long as the image is not produced from noise, there is generally some 
+            correlation between adjacent pixels.
+        </p>
+
+        <p> 
+            For the input of the model, I used the cropped image, which is easy to get in a single line with tf.image.central_crop.
+            The output of the model is the entire image, including the inner region that should be identical to the input. 
+            In principle, this project could be written such that the model automatically forwards those regions and the model is only fit to the extrapolated region.
+            One reason I did not do this was that I wanted to see how the model fitting detected and started doing this on its own. This also makes the code much easier to write.
+        </p>
+
+        <p>
+            For the image data set, I currently use the small <a href="https://www.tensorflow.org/datasets/catalog/imagenet_v2">imagenet_v2</a> data set, containing 10,000 images at total size of 1 GB.
+            I have also looked at the larger <a href="https://www.tensorflow.org/datasets/catalog/places365_small">places365_small</a> data set, with over 2 million images at 29 GB.
+            One potential choice with the places365_small dataset is to select single types of image by label, and to train individual "tunes" of the model, to seeif noticeable differcnes would appear. 
+            For example, would one be able to see different extrapolations when the model is trained on indoor vs outdoor scenes?
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="column">
+        <p>
+            Shown here is one of the first outputs after getting the data loading and first fitting working, using an image from a validation set (i.e. not an image used for training).
+            In the left column is the full image and in the middle column is a slightly cropped image that is the input to the model.
+            The output of one of the first models, which obviously did not accurately recreate the image.
+            It is interesting to note how most of image should be easy to model: the inner area of the output should just forward the original image.
+        </p>
+    </div>
+
+    <div class="column">
+        <img src="figures/extrap/first_extrapolation.png" alt="First attempt at extrapolation" style="width:50%; display: block; margin-left: auto; margin-right: auto;">
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="column">
+        <p>
+            After making some basic improvements, I got the model to start getting some details of the inner image, although it is still not very accurate.
+            Notably, there is a lot of noise, which is repeated between different inputs.
+            I find it interesting to know that this is a visual impact from the random initial settings of the weights and thresholds in the layers.
+            It is surprisingly that these noisy spikes were not the first things eliminated in the fitting, as they should be a leading contribution to the model loss.
+        </p>
+
+        <p>
+            One improvement that fixed for the noisy spikes was to switch the activation function in the final layer from "ReLU" to "sigmoid," an obvious choice for image generation which I learned from this project.
+            This change also caused these early versions of the model to not get the more extreme RGB values from the raw input.
+        </p>
+
+        <p>
+            These models so far have used convolutional layers followed by a dense layer for the output.
+            As I found out quickly, using dense layers on image datasets does not scale well, as the number of weight parameters scales as the 4th power of the linear resolution.
+            The dense layers do add some interesting noise to the outputs in the extrapolated regions, which will be noticeable when this is removed.
+        </p>
+    </div>
+
+    <div class="column">
+        <img src="figures/extrap/model_4_simple_result_single.png" alt="Second attempt at extrapolation" style="width:50%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+        <img src="figures/extrap/model_4s_simple_result_single.png" alt="third attempt at extrapolation" style="width:50%; display: block; margin-left: auto; margin-right: auto;">
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+
+        <p>
+            In the later versions of the model, I removed all dense layers so that I could increase the resolution of the model without increasing the number of parameters beyond what I could practically fit.
+            One key role that the dense layer at the end of my early model played was in increasing the image resolution, from the cropped image to the full image.
+            In order to do this without a dense layer, I used two tools: a zero-padding layer and a deconvolution layer.
+            I think either of these tools could accomplish this goal on their own, but that is something I will have to experiment with to verify.
+            I had also already been using the "same" option for padding in the convolutional layers to make sure that the layers did not reduce the image resolution within the model.
+            Together, this drastically reduced both the raw number of parameters and that number's scaling with the image resolution.
+            Now the number of parameters scales roughly with the square of the linear resolution, as increasing the resolution requires increasing the size of the convolutional filters.
+        </p>
+
+        <p>
+            The result of this new purely convolutional model are shown below.
+            An intermediate resolution of 64x64 pixels is shown at the left, and a larger resolution of 128x128 pixels is used at the right. 
+
+            It was also at this point in the project that I improved the displays, including rearranging the columns to be: Input (cropped image), Target (full image), and Output
+            and adding a nice overlay showing the region outside of which everything in the output is extrapolated.
+
+        </p>
+
+    </div>
+    <div class="column">
+        <img src="figures/extrap/model_14.png" alt="Model 14" style="width:30%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="column">
+        <p class="figure_caption">CNN Model with 64x64 resolution</p>
+        <img src="figures/extrap/model_14_result_single.png" alt="Model 14" style="width:70%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+    <div class="column">
+        <p class="figure_caption">CNN Model with 128x128 resolution</p>
+        <img src="figures/extrap/model_17_result_single.png" alt="Model 14" style="width:70%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="twothirdscolumn">
+        <p>
+            More images from the validation set and the results of plugging them into the model can be seen 
+            <a target="_blank" href="figures/extrap/model_17_results_many_1.png">here</a>,
+            <a target="_blank" href="figures/extrap/model_17_results_many_2.png">here</a>, and
+            <a target="_blank" href="figures/extrap/model_17_results_many_3.png">here</a>.
+        </p>
+    </div>
+    <!--
+    <div class="onethirdcolumnright">
+        <a target="_blank" href="figures/extrap/model_17_results_many_3.png">
+        <img src="figures/extrap/model_17_results_many_3.png" alt="Model 17 Results" style="width:80%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+        </a>
+    </div>-->
+</div>
+
+
+<hr>
+<h2>Dengue Studies</h2>
 
 <table style="width:100%">
     <tr>
@@ -30,6 +174,7 @@
         </td>
     </tr>
 </table>
+
 
 <div class="row">
 <div class="fullcolumn">

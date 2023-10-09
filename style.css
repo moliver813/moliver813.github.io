@@ -12,10 +12,6 @@ hr {
   color: aliceblue;
 }
 
-ul {
-
-  }
-
 ul.menu {
     list-style-type: none;
     margin: 0;
@@ -80,6 +76,18 @@ th {color:aliceblue;    text-align: center;}
 p {
   color:azure;
   font-size: 118.75%;
+}
+
+figure_caption {
+  color:azure;
+  font-size:  140%;
+  text-align: center;
+}
+
+p.figure_caption {
+  color:azure;
+  font-size:  140%;
+  text-align: center;
 }
 
 row {
