@@ -22,28 +22,58 @@
     <li class="a"><a href="underwater_photography.html">Underwater Photography</a></li>
 </ul>
 
-    <h1>Data Science</h1>
+<h1>Data Science</h1>
 
-    <hr>
+<hr>
 
-    <h2>Competitions</h2>
-    <hr>
+<h2>Competitions</h2>
+<hr>
 
-    <h3>Kaggle</h3>
+    <h3>Kaggle: <a href="https://www.kaggle.com/competitions/optiver-trading-at-the-close">Optiver - Trading at the Close</a></h3>
 
-    <p>I am currently participating in the <a href="https://www.kaggle.com/competitions/optiver-trading-at-the-close">Optiver - Trading at the Close</a> competition.
+    <p>I participated in the Optiver - Trading at the Close competition.
         This competition uses data from the daily closing periods of the NASDAQ for 200 different stocks, and the goal is to predict the movement of each stock 60 seconds in the future relative to a synthetic index produced by Optiver.
-
     </p>
 
+    <p>
+        I started with some publicly posted code that computed imbalance features and trained boosted decision tree models with k-fold 
+        cross validation. First, I made signficant modifications to this code, rewriting it to make it easy to vary which features were included in the models.
+        I then created new features intended to quantify the behavior of each individual stock, such as the stock's volatility and correlation
+        with the movement of all the stocks in the data set, as well as more complicated correlations from a principal component analysis (PCA) of the 
+        movement of all stocks in the dataset, which was challenging to implement. I fine-tuned the number of PCA vectors and produced two final versions 
+        of the model: one using the k-fold cross validation, and one trained based on time-based splits.
+    </p>
 
-
+    <p>
+        The competition's entry period has ended, and now the competition's final evaluation data is being accumulated.
+    </p>
     <hr>
-    <h2>Data Science Projects</h2>
+    <h3>Kaggle: <a href="https://www.kaggle.com/competitions/digit-recognizer/">Digit Recognizer</a></h3>
+
+    <p>For personal practice in PyTorch and Computer Vision, I did a small project on the commonly studied MNIST digit recognition data set.
+        I later noticed that Kaggle has an ongoing competition on this dataset, and decided to 
+        try submitting a model based on my practice.
+    </p>
+
+    <p>The architecture of my models for this were convolutional layers followed a by dense layers, using some dropout in both phases.
+        I also used data augmentation, in the form of rotations and elastic transformations applied to the training data. 
+    </p>
+    <hr>
+    <h3>Kaggle: <a href="https://www.kaggle.com/competitions/playground-series-s4e1/">Binary Classification with a Bank Churn Dataset</a></h3>
+
+    <p>
+        This is a shorter, simple competition based on a synthetic dataset meant to simulate a bank's data on costumers with 
+        the competition's target being predicting which customers will stop doing business with the bank (a.k.a. churn).
+        This has been helpful with getting me more fluent in language of binary classification modelling,
+        including practicing creating ROC curves and computing the Area Under the Curve (AUC) metric.
+        So far, I've built some simple models based on the common boosted decision tree models,
+         finding CatBoost to consistently outperform the other boosted decision tree models.
+    </p>
+
+<hr>
 
 
-
-
+<h2>Data Science Projects</h2>
 
 <hr>
 <h3>Image Extrapolator</h3>
