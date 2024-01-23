@@ -57,6 +57,10 @@
 
     <p>The architecture of my models for this were convolutional layers followed a by dense layers, using some dropout in both phases.
         I also used data augmentation, in the form of rotations and elastic transformations applied to the training data. 
+        I made significant improvements to my early models by adding resampling of the training data, with new, randomly added transformations.
+        One clever trick I did was to weight the resampling according to which of the 10 output classes the model got wrong in the validation data.
+        This worked very well to avoid overfitting, and one of the latest versions reached 0.99375 in the competition.
+        I have made this version public, <a href="https://www.kaggle.com/code/michaeloliver137/digit-recognizer-2-targeted-resampling">here</a>.
     </p>
     <hr>
     <h3>Kaggle: <a href="https://www.kaggle.com/competitions/playground-series-s4e1/">Binary Classification with a Bank Churn Dataset</a></h3>
@@ -68,6 +72,8 @@
         including practicing creating ROC curves and computing the Area Under the Curve (AUC) metric.
         So far, I've built some simple models based on the common boosted decision tree models,
          finding CatBoost to consistently outperform the other boosted decision tree models.
+
+         I've made one version of my notebook for this publically available <a href="https://www.kaggle.com/code/michaeloliver137/bank-churn-k-fold-cv-and-ensemble-of-bdts">here</a>.
     </p>
 
 <hr>
@@ -217,6 +223,50 @@
     </div>-->
 </div>
 
+<h3>Update (January 2024)</h3>
+
+<div class="row">
+    <div class="column">
+        <p>
+            I have recently returned to this project, making two major improvements. One is to address the issue/choice I noted earlier, 
+            where I did not implement an automated forwarding of the input image to the middle of the output. One reason I did not do that 
+            then was that I was not confident enough in manipulating tensors. Now with more practice, I figured out a way to forward the output
+            in a way that is done entirely within the model, by taking the input image, padding it, and combining it via addition to the output of
+            the model's active layers (the convolutional layers with free parameters). 
+            In that addition, a filter is applied via multiplication to remove the inner portion of the active layers.
+        </p>
+        <p>
+            The other improvement was to apply a scaling factor around 1.2 to the output of the active layers, whose final layer applied a sigmoid function.
+            The sigmoid function was a natural choice, as the outputs are meant to be floats in the range 0-1.
+            However, the pixels in the images can easily reach the extreme value of 1, whereas a model with a sigmoid function will struggle
+            to actually reach near the exact value of 1. I believe this was the cause of some errors where the model's output color range
+            did not match the input, and it struggled to return extreme color values. 
+            My solution maps the active layers' output, in the range [0-1) to the range [0,1.2). This makes it much easier for the model
+            to hit the extreme values. The downside is that the output can give values of above 1, but the PIL library will automatically applies a cutoff.
+        </p>
+
+        <p>
+            The diagram at the right shows model 25, a version with these latest features. Below, several example outputs with model 25 are shown.
+            The boundary between the input and the extrapolated is still obvious, but the output does follow some general trends in the background,
+             especially in the outdoor images.
+        </p>
+        
+    </div>
+    <div class="column">
+        <img src="figures/extrap/model_25.png" alt="Model 25" style="width:30%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <p class="figure_caption">Model 25 Output Series 1</p>
+        <img src="figures/extrap/model_25_series.png" alt="Model 25 Series 1" style="width:70%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+    <div class="column">
+        <p class="figure_caption">Model 25 Output Series 2</p>
+        <img src="figures/extrap/model_25_series_2.png" alt="Model 25 Series 2" style="width:70%; display: block; margin-left: auto; margin-right: auto; padding-bottom:10px">
+    </div>
+</div>
 
 <hr>
 <h3>Dengue Studies</h3>
@@ -436,11 +486,11 @@
     <div class="fullcolumn">
 
     <p>
-    This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
-     The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
-     In order to do this (as well as process the web page I used to produce the list), I learned how to use the <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library to parse and search html documents.
-     Starting with the 500 companies of the S&P 500, I developed a workflow of scripts to download and parse the websites.
-     The latest version captured the about-us information from 215 of 500 websites, an acceptable success rate for my purpose. 
+        This project started when I was introduced to the idea of different companies having different kinds of culture and I wondered if there was a lazy way to classify the company cultures automatically.
+        The first step was to collect data to use as the input. For this, I decided to use text from the "About Us" pages of the different company websites.
+        In order to do this (as well as process the web page I used to produce the list), I learned how to use the <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> library to parse and search html documents.
+        Starting with the 500 companies of the S&P 500, I developed a workflow of scripts to download and parse the websites.
+        The latest version captured the about-us information from 215 of 500 websites, an acceptable success rate for my purpose. 
     </p>
     </div>
 
@@ -494,7 +544,11 @@
 
     <div class="column">
     <p>
-        I then computed the entropy function I defined previously, and looked at how the entropy changed with the number of clusters in the algorithm.  
+        I then computed the rescaled entropy function I defined previously, and looked at how the entropy changed with the number of clusters in the algorithm.  
+        The idea was to check if the entropy is maximized for a given k-value, which should give an estimate for the true number of clusters.
+        I found that this did not work well in small numbers of dimensions, but worked better in more dimensions, such as the 10-dimensional simulation used at right. In the plot,
+        the experiement was done with 10 simulations, with the scaled entropy curve computed for each. The true value of 6 clusters always appears as a maximum, but some simulations
+        have maxima at lower k-values. This could correspond to cases where the randomly generated clusters were too close to easily separate.
     </p>
 
     <p>
